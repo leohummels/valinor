@@ -1,0 +1,14 @@
+[build]
+  base = "/"
+  command = "pnpm --filter frontend build"
+  publish = "apps/frontend/dist/frontend/browser"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "9.0.0"
+
+# SPA: redireciona todas as rotas para index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

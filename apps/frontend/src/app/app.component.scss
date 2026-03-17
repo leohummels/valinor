@@ -1,0 +1,29 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+mat-toolbar {
+  gap: v.$spacing-sm;
+}
+
+.title {
+  margin-left: v.$spacing-sm;
+}
+
+main {
+  flex: 1;
+  overflow: auto;
+  padding: v.$spacing-lg;
+  background-color: v.$color-bg-page;
+}
+
+@include m.mobile {
+  main {
+    padding: v.$spacing-sm;
+  }
+}

@@ -1,0 +1,114 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Board {
+  columns: [Column!]!
+  createdAt: DateTime!
+  id: ID!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type Card {
+  attribution: String
+  columnId: String!
+  createdAt: DateTime!
+  deadline: DateTime
+  description: String
+  effort: Float
+  finishDate: DateTime
+  id: ID!
+  order: Int!
+  owner: String
+  tester: String
+  title: String!
+  updatedAt: DateTime!
+}
+
+type Column {
+  board: Board
+  boardId: ID!
+  cards: [Card!]
+  createdAt: DateTime!
+  id: ID!
+  order: Int!
+  title: String!
+  updatedAt: DateTime!
+}
+
+input CreateBoardInput {
+  title: String!
+}
+
+input CreateCardInput {
+  attribution: String
+  columnId: ID!
+  deadline: DateTime
+  description: String
+  effort: Float
+  finishDate: DateTime
+  order: Int
+  owner: String
+  tester: String
+  title: String!
+}
+
+input CreateColumnInput {
+  boardId: ID!
+  order: Int
+  title: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input MoveCardInput {
+  newOrder: Int!
+  targetColumnId: ID!
+}
+
+type Mutation {
+  createBoard(input: CreateBoardInput!): Board!
+  createCard(input: CreateCardInput!): Card!
+  createColumn(input: CreateColumnInput!): Column!
+  deleteBoard(id: ID!): Boolean!
+  deleteCard(id: ID!): Boolean!
+  deleteColumn(id: ID!): Boolean!
+  moveCard(id: ID!, input: MoveCardInput!): Card!
+  updateBoard(id: ID!, input: UpdateBoardInput!): Board!
+  updateCard(id: ID!, input: UpdateCardInput!): Card!
+  updateColumn(id: ID!, input: UpdateColumnInput!): Column!
+}
+
+type Query {
+  board(id: ID!): Board!
+  boards: [Board!]!
+  card(id: ID!): Card!
+  cards(columnId: ID): [Card!]!
+  column(id: ID!): Column!
+  columns(boardId: ID): [Column!]!
+}
+
+input UpdateBoardInput {
+  title: String
+}
+
+input UpdateCardInput {
+  attribution: String
+  deadline: DateTime
+  description: String
+  effort: Float
+  finishDate: DateTime
+  order: Int
+  owner: String
+  tester: String
+  title: String
+}
+
+input UpdateColumnInput {
+  order: Int
+  title: String
+}

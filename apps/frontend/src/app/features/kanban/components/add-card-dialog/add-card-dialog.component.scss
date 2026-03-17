@@ -1,0 +1,11 @@
+@use 'mixins' as m;
+
+@include m.dialog-form-layout;
+
+.full-width {
+  margin-bottom: 8px;
+}
+
+.half-width {
+  margin-bottom: 8px;
+}

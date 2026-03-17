@@ -1,0 +1,47 @@
+<mat-card class="kanban-card" (click)="onCardClick()" data-cy="card">
+  <mat-card-content>
+    <div class="card-header">
+      <span class="card-title" data-cy="card-title">{{ card.title }}</span>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="cardMenu"
+        class="card-menu"
+        (click)="$event.stopPropagation()"
+        data-cy="card-menu-btn"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #cardMenu="matMenu">
+        <button mat-menu-item (click)="onDelete()" data-cy="delete-card-btn">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </div>
+    @if (card.description) {
+      <p class="card-description" data-cy="card-description">{{ card.description }}</p>
+    }
+    <div class="card-meta" data-cy="card-meta">
+      @if (card.attribution) {
+        <span class="meta-chip attribution" title="Attribution" data-cy="chip-attribution">
+          <mat-icon>person</mat-icon>{{ card.attribution }}
+        </span>
+      }
+      @if (card.tester) {
+        <span class="meta-chip tester" title="Tester" data-cy="chip-tester">
+          <mat-icon>bug_report</mat-icon>{{ card.tester }}
+        </span>
+      }
+      @if (card.effort !== undefined && card.effort !== null) {
+        <span class="meta-chip effort" title="Effort" data-cy="chip-effort">
+          <mat-icon>schedule</mat-icon>{{ card.effort }}h
+        </span>
+      }
+      @if (card.deadline) {
+        <span class="meta-chip deadline" title="Deadline" data-cy="chip-deadline">
+          <mat-icon>event</mat-icon>{{ card.deadline | date: 'dd/MM' }}
+        </span>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

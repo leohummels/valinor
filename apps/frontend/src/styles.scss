@@ -1,0 +1,30 @@
+@use 'app/styles/variables' as v;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: v.$spacing-sm;
+  height: v.$spacing-sm;
+}
+
+::-webkit-scrollbar-track {
+  background: v.$scrollbar-track;
+}
+
+::-webkit-scrollbar-thumb {
+  background: v.$scrollbar-thumb;
+  border-radius: v.$spacing-xs;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: v.$scrollbar-thumb-hover;
+}

@@ -1,0 +1,22 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+@include m.dialog-form-layout;
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: v.$spacing-sm;
+}
+
+.title-field input {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.created-at {
+  font-size: 12px;
+  color: v.$color-text-subtle;
+  margin-top: v.$spacing-xs;
+}

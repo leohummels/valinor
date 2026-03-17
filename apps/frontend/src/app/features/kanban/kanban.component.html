@@ -1,0 +1,31 @@
+<div class="kanban-container">
+  <div class="kanban-header">
+    <h2>Kanban Board</h2>
+    <button mat-raised-button color="primary" (click)="onAddColumn()" data-cy="add-column-btn">
+      <mat-icon>add</mat-icon>
+      Add Column
+    </button>
+  </div>
+
+  <div
+    class="kanban-board"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="columns"
+    (cdkDropListDropped)="onColumnDrop($event)"
+    data-cy="kanban-board"
+  >
+    @for (column of columns; track trackByColumnId($index, column)) {
+      <app-kanban-column
+        cdkDrag
+        [column]="column"
+        [connectedLists]="getConnectedLists()"
+        (deleted)="onColumnDeleted($event)"
+        (cardMoved)="onCardMoved($event)"
+        (cardCreated)="onCardCreated($event)"
+        (cardUpdated)="onCardUpdatedFromColumn($event)"
+        (cardDeleted)="onCardDeletedFromColumn($event)"
+      />
+    }
+  </div>
+</div>

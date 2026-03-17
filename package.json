@@ -1,0 +1,30 @@
+{
+  "name": "kanban-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kanban board with Angular + NestJS + GraphQL + Socket.io",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend dev\"",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "build": "pnpm -r build",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build",
+    "test": "pnpm -r test",
+    "test:frontend": "pnpm --filter frontend test",
+    "test:backend": "pnpm --filter backend test",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
+    "e2e": "pnpm --filter frontend e2e",
+    "e2e:ci": "pnpm --filter frontend e2e:ci",
+    "cy:open": "pnpm --filter frontend cy:open"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

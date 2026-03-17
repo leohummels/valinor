@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Frontend (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "Start Frontend",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/apps/frontend"
+    },
+    {
+      "name": "Backend (Node)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "sourceMaps": true,
+      "localRoot": "${workspaceFolder}/apps/backend",
+      "remoteRoot": "${workspaceFolder}/apps/backend"
+    },
+    {
+      "name": "Jest Tests (Backend)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "backend", "test", "--", "--runInBand"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack",
+      "configurations": ["Frontend (Chrome)", "Backend (Node)"]
+    }
+  ]
+}

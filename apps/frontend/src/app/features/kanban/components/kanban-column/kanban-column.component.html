@@ -1,0 +1,45 @@
+<mat-card class="column" data-cy="column">
+  <mat-card-header cdkDragHandle>
+    <mat-icon class="drag-handle">drag_indicator</mat-icon>
+    <mat-card-title data-cy="column-title">{{ column.title }}</mat-card-title>
+    <button mat-icon-button [matMenuTriggerFor]="columnMenu" data-cy="column-menu-btn">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #columnMenu="matMenu">
+      <button mat-menu-item (click)="onDeleteColumn()" data-cy="delete-column-btn">
+        <mat-icon>delete</mat-icon>
+        <span>Delete Column</span>
+      </button>
+    </mat-menu>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div
+      cdkDropList
+      [id]="listId"
+      [cdkDropListData]="column.cards"
+      [cdkDropListConnectedTo]="connectedLists"
+      (cdkDropListDropped)="onDrop($event)"
+      class="card-list"
+      data-cy="card-list"
+    >
+      @for (card of column.cards; track trackByCardId($index, card)) {
+        <app-kanban-card
+          cdkDrag
+          [card]="card"
+          (deleted)="onCardDeleted($event)"
+          (updated)="onCardUpdated($event)"
+        />
+      } @empty {
+        <div class="empty-column" data-cy="empty-column">No cards</div>
+      }
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="onAddCard()" data-cy="add-card-btn">
+      <mat-icon>add</mat-icon>
+      Add Card
+    </button>
+  </mat-card-actions>
+</mat-card>

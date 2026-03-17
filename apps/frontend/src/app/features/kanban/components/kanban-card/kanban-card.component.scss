@@ -1,0 +1,106 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.kanban-card {
+  cursor: pointer;
+  background: v.$color-bg-card;
+  border-radius: v.$spacing-xs;
+  box-shadow: 0 1px 0 v.$color-card-shadow;
+  transition: box-shadow 0.15s;
+
+  &:hover {
+    background: v.$color-bg-card-hover;
+
+    .card-menu {
+      opacity: 1;
+    }
+  }
+
+  mat-card-content {
+    padding: v.$spacing-sm v.$spacing-md;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    word-break: break-word;
+  }
+
+  .card-menu {
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin: calc(v.$spacing-sm * -1) calc(v.$spacing-sm * -1) 0 0;
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .card-description {
+    margin: v.$spacing-sm 0 0;
+    font-size: 12px;
+    color: v.$color-text-subtle;
+    line-height: 1.4;
+  }
+
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$spacing-xs;
+    margin-top: v.$spacing-sm;
+  }
+
+  .meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    mat-icon {
+      font-size: 12px;
+      width: 12px;
+      height: 12px;
+    }
+
+    &.attribution {
+      @include m.meta-chip(v.$chip-attribution-bg, v.$chip-attribution-color);
+    }
+
+    &.tester {
+      @include m.meta-chip(v.$chip-tester-bg, v.$chip-tester-color);
+    }
+
+    &.effort {
+      @include m.meta-chip(v.$chip-effort-bg, v.$chip-effort-color);
+    }
+
+    &.deadline {
+      @include m.meta-chip(v.$chip-deadline-bg, v.$chip-deadline-color);
+    }
+  }
+}
+
+:host {
+  display: block;
+}
+
+@include m.mobile {
+  .kanban-card mat-card-content {
+    padding: 10px v.$spacing-md;
+  }
+}
